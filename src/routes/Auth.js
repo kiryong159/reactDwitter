@@ -1,9 +1,10 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
 } from "firebase/auth";
 import React, { useState } from "react";
-import { authService } from "../myBase";
+import { authService, googleProvider, githubProvider } from "../myBase";
 
 const Auth = () => {
   const [email, setEmail] = useState("");
@@ -42,6 +43,16 @@ const Auth = () => {
     setNewAccount((current) => !current);
   };
 
+  const onSocial = async (event) => {
+    const { name } = event.target;
+    let provider;
+    if (name === "google") {
+      provider = googleProvider;
+    } else if (name === "github") {
+      provider = githubProvider;
+    }
+    await signInWithPopup(authService, provider);
+  };
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -65,8 +76,12 @@ const Auth = () => {
       </form>
       <button onClick={toggleBtn}>로그인/가입 버튼바꾸기</button>
       <div>
-        <button>깃헙</button>
-        <button>구글</button>
+        <button onClick={onSocial} name="github">
+          깃헙
+        </button>
+        <button onClick={onSocial} name="google">
+          구글
+        </button>
       </div>
       <h3>{error}</h3>
     </div>
