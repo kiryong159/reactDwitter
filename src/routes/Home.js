@@ -1,28 +1,37 @@
 import React, { useEffect, useState } from "react";
+import Dweet from "../components/Dweet";
 import { dbService } from "../myBase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  onSnapshot,
+} from "firebase/firestore";
 
-const Home = () => {
-  const [dwit, setDwit] = useState();
+const Home = ({ userObj }) => {
+  const [dwit, setDwit] = useState("");
   const [dwits, setDwits] = useState([]);
-  const getDwits = async () => {
-    const dwitsData = await getDocs(collection(dbService, "Dwieet"));
-    dwitsData.forEach((document) => {
-      const diwtOjb = { ...document.data(), id: document.id };
-      setDwits((prev) => [diwtOjb, ...prev]);
-    });
-  };
+
   useEffect(() => {
-    getDwits();
+    const snapShot = onSnapshot(collection(dbService, "Dwieet"), (snap) => {
+      const dwitsArray = snap.docs.map((item) => ({
+        id: item.id,
+        ...item.data(),
+      }));
+      setDwits(dwitsArray);
+    });
   }, []);
 
   const onChange = (event) => {
-    setDwit(event.target.value);
+    const { value } = event.target;
+    setDwit(value);
   };
   const onSubmit = async (event) => {
     event.preventDefault();
     await addDoc(collection(dbService, "Dwieet"), {
-      Dwieet: dwit,
+      text: dwit,
+      creatorId: userObj.uid,
     });
     setDwit("");
   };
@@ -39,7 +48,11 @@ const Home = () => {
       </form>
       <div>
         {dwits.map((item) => (
-          <li key={item.id}>{item.Dwieet}</li>
+          <Dweet
+            key={item.id}
+            dwits={item}
+            isOwner={userObj.uid === item.creatorId}
+          />
         ))}
       </div>
     </div>
