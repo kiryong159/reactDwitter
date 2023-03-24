@@ -1,9 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { dbService } from "../myBase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 
 const Home = () => {
   const [dwit, setDwit] = useState();
+  const [dwits, setDwits] = useState([]);
+  const getDwits = async () => {
+    const dwitsData = await getDocs(collection(dbService, "Dwieet"));
+    dwitsData.forEach((document) => {
+      const diwtOjb = { ...document.data(), id: document.id };
+      setDwits((prev) => [diwtOjb, ...prev]);
+    });
+  };
+  useEffect(() => {
+    getDwits();
+  }, []);
+
   const onChange = (event) => {
     setDwit(event.target.value);
   };
@@ -25,6 +37,11 @@ const Home = () => {
         />
         <input type="submit" value="Dwit" />
       </form>
+      <div>
+        {dwits.map((item) => (
+          <li key={item.id}>{item.Dwieet}</li>
+        ))}
+      </div>
     </div>
   );
 };
