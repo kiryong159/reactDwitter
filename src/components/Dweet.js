@@ -30,6 +30,7 @@ const Dweet = ({ dwits, isOwner }) => {
   return (
     <div>
       <h3>{dwits.text}</h3>
+      {dwits.fileUrl && <img src={dwits.fileUrl} width="50px" height="50px" />}
       {isOwner && (
         <>
           {editing ? (
