@@ -35,6 +35,15 @@ const Home = ({ userObj }) => {
     });
     setDwit("");
   };
+
+  const onFileChange = (event) => {
+    const FileData = event.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = (finishEvent) => {
+      const imgUrl = finishEvent.target.result;
+    };
+    reader.readAsDataURL(FileData);
+  };
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -44,6 +53,7 @@ const Home = ({ userObj }) => {
           placeholder="Write.."
           onChange={onChange}
         />
+        <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="Dwit" />
       </form>
       <div>
