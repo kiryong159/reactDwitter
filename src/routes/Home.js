@@ -89,7 +89,7 @@ const Home = ({ userObj }) => {
         <div>
           {imgUrl && (
             <>
-              <img src={imgUrl} width="50px" height="50px" alt={imgUrl} />
+              <img src={imgUrl} width="50px" height="50px" alt={"1"} />
               <div>
                 <button onClick={onClearImg}>Clear</button>
               </div>
