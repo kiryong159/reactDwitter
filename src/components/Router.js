@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -18,7 +18,7 @@ const AppRouter = ({ loggedIn, userObj }) => {
         {loggedIn ? (
           <>
             <Route path="/" element={<Home userObj={userObj} />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile userObj={userObj} />} />
             <Route path="*" element={<Navigate replace to="/" />} />
           </>
         ) : (

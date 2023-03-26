@@ -49,6 +49,7 @@ const Home = ({ userObj }) => {
       text: dwit,
       creatorId: userObj.uid,
       fileUrl,
+      createAt: new Date(),
     };
     await addDoc(collection(dbService, "Dwieet"), DwietObj);
     setDwit("");

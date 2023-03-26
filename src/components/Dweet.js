@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import { dbService } from "../myBase";
+import { deleteObject, getStorage, ref } from "firebase/storage";
 
 const Dweet = ({ dwits, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newDweet, setNewDweet] = useState(dwits.text);
+  const storage = getStorage();
   const onDeleteClick = async () => {
     const ok = window.confirm("really?");
     if (ok) {
       await deleteDoc(doc(dbService, "Dwieet", dwits.id));
+      const deleteRef = ref(storage, dwits.fileUrl);
+      await deleteObject(deleteRef);
     }
   };
 
@@ -30,7 +34,14 @@ const Dweet = ({ dwits, isOwner }) => {
   return (
     <div>
       <h3>{dwits.text}</h3>
-      {dwits.fileUrl && <img src={dwits.fileUrl} width="50px" height="50px" />}
+      {dwits.fileUrl && (
+        <img
+          src={dwits.fileUrl}
+          width="50px"
+          height="50px"
+          alt={dwits.fileUrl}
+        />
+      )}
       {isOwner && (
         <>
           {editing ? (
