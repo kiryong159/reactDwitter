@@ -9,15 +9,36 @@ function App() {
   useEffect(() => {
     onAuthStateChanged(authService, (user) => {
       if (user) {
-        setUserObj(user);
+        setUserObj({
+          displayName: user.displayName,
+          photoURL: user.photoURL,
+          uid: user.uid,
+          email: user.email,
+        });
+      } else {
+        setUserObj(null);
       }
     });
     setInit(true);
   }, []);
+  const userUpdate = () => {
+    const user = authService.currentUser;
+    const photo = Boolean(authService.currentUser.photoURL !== null);
+    setUserObj({
+      displayName: user.displayName,
+      photoURL: photo ? user.photoURL : null,
+      uid: user.uid,
+      email: user.email,
+    });
+  };
   return (
     <div className="App">
       {init ? (
-        <AppRouter loggedIn={Boolean(userObj)} userObj={userObj} />
+        <AppRouter
+          loggedIn={Boolean(userObj)}
+          userObj={userObj}
+          userUpdate={userUpdate}
+        />
       ) : (
         <h1>Initializing...</h1>
       )}

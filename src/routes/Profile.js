@@ -7,15 +7,16 @@ import {
   ref,
   uploadString,
 } from "firebase/storage";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { authService, dbService } from "../myBase";
 import { v4 as uuidv4 } from "uuid";
 
-const Profile = ({ userObj }) => {
+const Profile = ({ userObj, userUpdate }) => {
   const [userDwit, setUserDwit] = useState([]);
   const [editProfile, setEditProfile] = useState(false);
   const [userDisplayName, setUserDisplayName] = useState(userObj.displayName);
   const [userPhoto, setUserPhoto] = useState("");
+  const photoFile = useRef();
   const toggleEdit = () => {
     setEditProfile((current) => !current);
   };
@@ -30,7 +31,7 @@ const Profile = ({ userObj }) => {
       const storage = getStorage();
       const deleteRef = ref(storage, userObj.photoURL);
       if (userObj.photoURL) {
-        const photoDelete = await deleteObject(deleteRef).catch(() => {
+        await deleteObject(deleteRef).catch(() => {
           console.log("기존이미지가 firebase에 없는 경우");
         });
       }
@@ -42,8 +43,11 @@ const Profile = ({ userObj }) => {
     if (userObj.displayName !== userDisplayName || userPhoto !== "") {
       await updateProfile(authService.currentUser, {
         displayName: `${userDisplayName}`,
-        photoURL: PhotoUrl,
+        photoURL: PhotoUrl === "" ? userObj.photoURL : PhotoUrl,
       });
+      userUpdate();
+      toggleEdit();
+      clearFile();
     }
   };
 
@@ -74,6 +78,14 @@ const Profile = ({ userObj }) => {
   useEffect(() => {
     getMyDwieets();
   }, []);
+
+  const clearFile = () => {
+    if (userPhoto) {
+      setUserPhoto("");
+      photoFile.current.value = null;
+    }
+  };
+
   return (
     <>
       <button onClick={onsignOut}>Log-Out</button>
@@ -87,7 +99,12 @@ const Profile = ({ userObj }) => {
               value={userDisplayName ? userDisplayName : ""}
               onChange={onChange}
             />
-            <input type="file" accept="image/*" onChange={onFileChange} />
+            <input
+              type="file"
+              accept="image/*"
+              onChange={onFileChange}
+              ref={photoFile}
+            />
             <input type="submit" value="Confirm" />
             <button onClick={toggleEdit}>Cancel</button>
           </form>
@@ -98,6 +115,7 @@ const Profile = ({ userObj }) => {
           src={userObj.photoURL ? userObj.photoURL : null}
           width="50px"
           height="50px"
+          alt="."
         />
       </div>
       <div>
