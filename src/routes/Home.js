@@ -20,7 +20,7 @@ const Home = ({ userObj }) => {
   return (
     <div>
       <NwwetFactory userObj={userObj} />
-      <div>
+      <div className="diwtsBigBox">
         {dwits.map((item) => (
           <Dweet
             key={item.id}

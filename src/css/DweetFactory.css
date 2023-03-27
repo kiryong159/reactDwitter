@@ -1,0 +1,71 @@
+.factoryForm {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+  margin: 0 auto;
+}
+
+.factoryInput {
+  display: flex;
+  border: none;
+  height: 25px;
+  width: 350px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  padding: 5px 15px;
+  box-shadow: 0px 0px 1px 0px black;
+}
+
+.factoryImgbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+}
+.factoryImgbox img {
+  margin-bottom: 15px;
+  border-radius: 20px;
+}
+
+.factoryFile {
+  display: none;
+}
+
+.factoryLabelBtn {
+  display: flex;
+  border-radius: 15px;
+  font-weight: bold;
+  border: none;
+  width: 300px;
+  padding: 10px;
+  justify-content: center;
+  background-color: white;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.479);
+}
+
+.factoryForm label span {
+  margin: 0 auto;
+  margin-bottom: 15px;
+}
+
+.submitBtn {
+  width: 70px;
+  padding: 5px;
+  border: none;
+  background-color: white;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 1);
+}
+
+.cancleBtn {
+  width: 120px;
+  padding: 5px;
+  border: none;
+  background-color: white;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 1);
+}

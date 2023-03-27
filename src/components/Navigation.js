@@ -1,16 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse, faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Navigation = ({ userObj }) => {
   return (
-    <nav>
+    <nav className="navBox">
       <ul>
-        <li>
-          <Link to="/">Home</Link>
+        <li className="li">
+          <Link to="/">
+            <FontAwesomeIcon icon={faHouse} />
+            <span>Home</span>
+          </Link>
         </li>
-        <li>
+        <li className="li">
           <Link to="/profile">
-            {userObj.displayName ? userObj.displayName : "Your "} Profile
+            <FontAwesomeIcon icon={faUser} />
+            <span>
+              {userObj.displayName ? userObj.displayName : "Your "} Profile
+            </span>
           </Link>
         </li>
       </ul>

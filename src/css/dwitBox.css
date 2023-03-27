@@ -1,0 +1,82 @@
+.dwitBox {
+  background-color: white;
+  display: flex;
+  width: 400px;
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 2px 0px black;
+  border: none;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+}
+
+.dwitBox img {
+  width: 80px;
+  height: 80px;
+  border-radius: 25px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.dwitText-Edit-Delete-Box {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  position: relative;
+}
+
+.Edit-DeleteBtn-Box {
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  right: 00px;
+}
+
+.Edit-DeleteBtn-Box button {
+  margin-top: 5px;
+  background-color: white;
+  border: none;
+}
+
+.editBox {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  width: 400px;
+  height: 100px;
+  position: absolute;
+}
+
+.editInput {
+  display: flex;
+  width: 250px;
+  padding: 10px;
+  border: none;
+  box-shadow: 0px 0px 2px 0px black;
+  border-radius: 10px;
+}
+
+.editSubmitBtn {
+  background-color: aliceblue;
+  font-size: 15px;
+  border: none;
+  box-shadow: 0px 0px 2px 0px black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+}
+
+.editCanceltBtn {
+  background-color: aliceblue;
+  font-size: 15px;
+  border: none;
+  box-shadow: 0px 0px 2px 0px black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  position: absolute;
+  bottom: 12px;
+  left: 135px;
+}

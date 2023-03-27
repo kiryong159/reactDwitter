@@ -62,30 +62,39 @@ const NwwetFactory = ({ userObj }) => {
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form onSubmit={onSubmit} className="factoryForm">
       <input
         value={dwit}
         type="text"
         placeholder="Write.."
         onChange={onChange}
+        className="factoryInput"
       />
+      <label htmlFor="factoryFile">
+        <span className="factoryLabelBtn">이미지 첨부하기</span>
+      </label>
       <input
+        id="factoryFile"
         type="file"
         accept="image/*"
         onChange={onFileChange}
         ref={imgInput}
+        className="factoryFile"
       />
-      <input type="submit" value="Dwit" />
+
       <div>
         {imgUrl && (
-          <>
-            <img src={imgUrl} width="50px" height="50px" alt={"1"} />
+          <div className="factoryImgbox">
+            <img src={imgUrl} width="100px" height="100px" alt={"1"} />
             <div>
-              <button onClick={onClearImg}>Clear</button>
+              <button onClick={onClearImg} className="cancleBtn">
+                사진 취소
+              </button>
             </div>
-          </>
+          </div>
         )}
       </div>
+      <input type="submit" value="Dwit" className="submitBtn" />
     </form>
   );
 };
