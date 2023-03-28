@@ -44,7 +44,7 @@ const AuthForm = () => {
   };
 
   return (
-    <div>
+    <div className="AuthSmallBox">
       <form onSubmit={onSubmit}>
         <input
           name="email"
@@ -65,9 +65,7 @@ const AuthForm = () => {
         <input type="submit" value={newAccount ? "Create Account" : "Log in"} />
       </form>
       <button onClick={toggleBtn}>로그인/가입 버튼바꾸기</button>
-      <>
-        <h3>{error}</h3>
-      </>
+      <>{error && <h3>{error}</h3>}</>
     </div>
   );
 };

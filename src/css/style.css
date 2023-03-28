@@ -2,9 +2,11 @@
 @import "nav.css";
 @import "DweetFactory.css";
 @import "dwitBox.css";
+@import "Profile.css";
+@import "Auth.css";
 
 .App {
-  background-color: rgb(110, 196, 170);
+  background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
   justify-content: center;

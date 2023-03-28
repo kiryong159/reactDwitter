@@ -1,0 +1,86 @@
+.proFile-Btnbox {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.proFile-Btnbox button {
+  padding: 10px;
+  margin: 5px;
+  background-color: white;
+  font-size: 15px;
+  border: none;
+  box-shadow: 0px 0px 1px 0px black;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.proFile-Btnbox button:last-child {
+  background-color: rgb(255, 129, 129);
+  padding: 5px 15px;
+  color: white;
+}
+
+/*이까지가 edit프로파일 / 로그아웃 버튼*/
+.profileForm {
+  position: relative;
+}
+
+.profileEditInput {
+  margin-top: 25px;
+}
+
+.profileForm label:first-child {
+  margin-bottom: 15px;
+  position: absolute;
+  left: 10px;
+}
+/* 이까지가 디스플레이네임 라벨  파일업로더는 팩토리*/
+.profile-edit-imgbox {
+  display: flex;
+  align-items: center;
+}
+
+.profile-edit-imgbox img {
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.profile-edit-btn {
+  background-color: white;
+  border: none;
+  box-shadow: 0px 0px 1px 0px black;
+  height: 30px;
+  margin-left: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.profile-edit-btn:first-child {
+  background-color: #00acee;
+  color: white;
+}
+.profile-edit-btn:last-child {
+  background-color: rgb(255, 129, 129);
+  color: white;
+}
+
+/* 이까지 에딧 버튼 이미지,버튼 */
+
+.profile-mainPhoto {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  display: flex;
+  width: 200px;
+  height: 100px;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-mainPhoto img {
+  width: 100px;
+  height: 100px;
+  border-radius: 25px;
+}

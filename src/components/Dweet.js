@@ -14,8 +14,10 @@ const Dweet = ({ dwits, isOwner }) => {
     const ok = window.confirm("really?");
     if (ok) {
       await deleteDoc(doc(dbService, "Dwieet", dwits.id));
-      const deleteRef = ref(storage, dwits.fileUrl);
-      await deleteObject(deleteRef);
+      if (dwits.fileUrl !== "") {
+        const deleteRef = ref(storage, dwits.fileUrl);
+        await deleteObject(deleteRef);
+      }
     }
   };
 

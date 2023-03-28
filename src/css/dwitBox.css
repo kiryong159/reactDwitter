@@ -38,6 +38,7 @@
   margin-top: 5px;
   background-color: white;
   border: none;
+  cursor: pointer;
 }
 
 .editBox {
