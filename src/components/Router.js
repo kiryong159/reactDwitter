@@ -12,7 +12,7 @@ import Navigation from "./Navigation";
 
 const AppRouter = ({ loggedIn, userObj, userUpdate }) => {
   return (
-    <Router base="/">
+    <Router basename="/">
       {loggedIn && <Navigation userObj={userObj} />}
       <Routes>
         {loggedIn ? (
